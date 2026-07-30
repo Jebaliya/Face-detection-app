@@ -7,11 +7,20 @@ import os
 
 # ── Paths ────────────────────────────────────────────────────
 BASE_DIR = Path(__file__).resolve().parent.parent
-KNOWN_FACES_DIR = BASE_DIR / "known_faces"
-MODELS_DIR = BASE_DIR / "models"
 
-KNOWN_FACES_DIR.mkdir(exist_ok=True)
-MODELS_DIR.mkdir(exist_ok=True)
+# On Vercel (serverless), only /tmp is writable — the rest of the
+# deployment bundle is read-only. Locally / in Docker, use normal
+# folders next to the app so data persists across restarts.
+if os.environ.get("VERCEL"):
+    RUNTIME_DIR = Path("/tmp")
+else:
+    RUNTIME_DIR = BASE_DIR
+
+KNOWN_FACES_DIR = RUNTIME_DIR / "known_faces"
+MODELS_DIR = RUNTIME_DIR / "models"
+
+KNOWN_FACES_DIR.mkdir(parents=True, exist_ok=True)
+MODELS_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Model files (OpenCV Zoo — auto-downloaded) ──────────────
 YUNET_URL = (
