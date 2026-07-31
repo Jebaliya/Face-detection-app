@@ -21,6 +21,13 @@ export default function Layout() {
             end
             className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
           >
+            <IconRegister />
+            <span>Register People</span>
+          </NavLink>
+          <NavLink
+            to="/live"
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+          >
             <IconCamera />
             <span>Live Camera</span>
           </NavLink>
@@ -30,13 +37,6 @@ export default function Layout() {
           >
             <IconLog />
             <span>Attendance Log</span>
-          </NavLink>
-          <NavLink
-            to="/register"
-            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
-          >
-            <IconRegister />
-            <span>Register People</span>
           </NavLink>
         </nav>
 
