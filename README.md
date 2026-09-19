@@ -175,6 +175,7 @@ project/
         └── styles/              # CSS split by page/concern
 ```
 
+
 ## Notes
 
 - `render.yaml` and `railway.json` are ready-to-use configs for deploying the
